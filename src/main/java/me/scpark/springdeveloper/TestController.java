@@ -1,8 +1,8 @@
 package me.scpark.springdeveloper;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,7 +15,13 @@ public class TestController {
 
     @GetMapping("/test")
 //  @ResponseBody
-    public List<Member>getAllMembers() {
-        return testService.getAllMembers();
+    public ResponseEntity<List<Member>>getAllMembers() {
+
+        return ResponseEntity.ok(testService.getAllMembers());
+    }
+    @PostMapping("/test")
+    public ResponseEntity<Member> createMember(@RequestBody Member member) {
+
+        return ResponseEntity.ok(testService.saveMember(member));
     }
 }
