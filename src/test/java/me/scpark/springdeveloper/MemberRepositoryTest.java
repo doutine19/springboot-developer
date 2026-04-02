@@ -96,4 +96,29 @@ public class MemberRepositoryTest {
         //then
         assertThat(memberRepository.findAll().size()).isEqualTo(2);
     }
+
+    @Sql("/insert-member.sql")
+    @DisplayName("레코드 삭제 테스트")
+    @Test
+    void deleteAll() {
+        // given
+        // when
+        memberRepository.deleteAll();
+
+        // then
+        assertThat(memberRepository.findAll().size()).isZero();
+        }
+
+    @Sql("/insert-members.sql")
+    @DisplayName("Update Test")
+    @Test
+    void update() {
+        // given
+        Member member = memberRepository.findById(2L).get();
+        // when
+        member.changeName = "scpark";
+
+        // then
+        assertThat(memberRepository.findById(2L).get().getName()).isEqualTo("scpark");
+    }
 }

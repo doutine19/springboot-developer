@@ -11,12 +11,17 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 public class Member {
+    public String changeName;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
     private Long id;
     @Column(name = "name", nullable = false)
     private String name;
+
+    public void changeName(String name) {
+        this.name = name;
+    }
 
 
     public Member(String name){
