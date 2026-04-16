@@ -10,11 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Article {
 
-    /*
-        id (bigint, not null, primary key)
-        title (varchar(255), not null)
-        content (varchar(255), not null)
-     */
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Id
     @Column(name="id", updatable = false)
@@ -28,6 +23,10 @@ public class Article {
 
     @Builder
     public Article(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
+    public void update(String title, String content) {
         this.title = title;
         this.content = content;
     }
