@@ -4,22 +4,40 @@ import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-@Getter
+import java.time.LocalDateTime;
+// 블로그 글 상세보기 구현하기. 5월 11일 (화요일)
 @Entity
+@Getter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Article {
-
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    /*
+        id (bigint, not null, primary key)
+        title (varchar(255), not null)
+        content (varchar(255), not null)
+     */
     @Id
-    @Column(name="id", updatable = false)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="id", updatable=false)
     private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name="title", nullable=false)
     private String title;
 
-    @Column(name = "content",nullable = false)
+    @Column(name="content", nullable=false)
     private String content;
+
+    @CreatedDate
+    @Column(name="created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name="updated_at")
+    private LocalDateTime updatedAt;
 
     @Builder
     public Article(String title, String content) {
@@ -31,4 +49,3 @@ public class Article {
         this.content = content;
     }
 }
-

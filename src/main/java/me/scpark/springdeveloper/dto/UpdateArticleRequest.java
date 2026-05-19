@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor // new UpdateArticleRequest('title', 'content');
 @NoArgsConstructor // new UpdateArticleRequest();
-@Getter // UpdateArticleRequest.getContent();
+@Getter // updateArticleRequest.getContent();
 public class UpdateArticleRequest {
     private String title;
     private String content;
