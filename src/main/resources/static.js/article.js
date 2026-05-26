@@ -1,6 +1,3 @@
-// 블로그 글 삭제 기능은 영준이가 하기로 했음. 영진이 일수도... 민혁이 일수도..
-// 누구라도...
-
 const modifyBtn = document.getElementById('modify-btn')
 if (modifyBtn) {
     const params = new URLSearchParams(location.search);
